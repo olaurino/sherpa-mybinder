@@ -14,23 +14,21 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 # Install required conda libraries
 #****************************************************************************
 
-ENV PATH=$HOME/anaconda2/bin:$PATH
-
-RUN source activate python3 && \
+RUN /bin/bash -c "source activate python3 && \
   conda install -y -c sherpa \
   notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
   rm -rf /opt/conda/pkgs/* && \
-  pip install saba corner
+  pip install saba corner"
 
-RUN source activate root && \
+RUN /bin/bash -c "source activate root && \
   conda install -y -c sherpa \
   notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
   rm -rf /opt/conda/pkgs/* && \
-  pip install saba corner
+  pip install saba corner"
 
 # Add notebooks to image
 RUN mv $HOME/notebooks/sherpa-notebooks/*.ipynb $HOME/notebooks && \
