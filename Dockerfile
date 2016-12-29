@@ -6,7 +6,7 @@
 #  - https://hub.docker.com/r/continuumio/miniconda/
 #
 #****************************************************************************
-FROM continuumio/miniconda3
+FROM andrewosh/binder-base:latest
 
 MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 
@@ -14,7 +14,7 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 # Install required conda libraries
 #****************************************************************************
 
-RUN conda install -y -c sherpa \
+RUN conda install -n python3 -y -c sherpa \
   notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
