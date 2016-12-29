@@ -14,6 +14,8 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 # Install required conda libraries
 #****************************************************************************
 
+ENV PATH=$HOME/anaconda2/bin:$PATH
+
 RUN source activate python3 && \
   conda install -y -c sherpa \
   notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
