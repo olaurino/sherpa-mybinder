@@ -15,7 +15,7 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 #****************************************************************************
 
 RUN conda install -n python3 -y -c sherpa \
-  notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
+  notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl pip && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
   rm -rf /opt/conda/pkgs/* && \
