@@ -31,11 +31,9 @@ RUN /bin/bash -c "source activate root && \
   pip install saba corner"
 
 # Add notebooks to image
-RUN mv $HOME/notebooks/sherpa-notebooks/*.ipynb $HOME/notebooks && \
-  rm -rf $HOME/notebooks/sherpa-notebooks
+RUN rm -rf $HOME/notebooks/sherpa-notebooks
 
-COPY sherparc $HOME/notebooks
-COPY images/ $HOME/notebooks/
+COPY . $HOME/notebooks/
 
 # Single CPU Configuration file
 ENV SHERPARC=$HOME/notebooks/sherparc
