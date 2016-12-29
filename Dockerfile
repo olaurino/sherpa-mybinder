@@ -34,7 +34,7 @@ RUN /bin/bash -c "source activate root && \
 RUN rm -rf $HOME/notebooks/sherpa-notebooks
 
 COPY sherpa-notebooks/images/ $HOME/notebooks/images/
-COPY sherpa-notebooks/* $HOME/notebooks/
+COPY sherpa-notebooks/*.ipynb sherpa-notebooks/sherparc $HOME/notebooks/
 
 # Single CPU Configuration file
 ENV SHERPARC=$HOME/notebooks/sherparc
