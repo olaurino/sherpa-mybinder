@@ -33,7 +33,7 @@ RUN /bin/bash -c "source activate root && \
 # Add notebooks to image
 RUN rm -rf $HOME/notebooks/sherpa-notebooks
 
-COPY . $HOME/notebooks/
+COPY sherpa-notebooks/* $HOME/notebooks/
 
 # Single CPU Configuration file
 ENV SHERPARC=$HOME/notebooks/sherparc
