@@ -32,9 +32,10 @@ RUN /bin/bash -c "source activate root && \
 
 # Add notebooks to image
 RUN mv $HOME/notebooks/sherpa-notebooks/*.ipynb $HOME/notebooks && \
-  mv $HOME/notebooks/sherparc $HOME/notebooks
-  mv $HOME/notebooks/sherpa-notebooks/images $HOME/notebooks && \
   rm -rf $HOME/notebooks/sherpa-notebooks
+
+COPY sherparc $HOME/notebooks
+COPY images/ $HOME/notebooks/
 
 # Single CPU Configuration file
 ENV SHERPARC=$HOME/notebooks/sherparc
