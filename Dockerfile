@@ -25,7 +25,7 @@ RUN conda install -y -c sherpa \
 EXPOSE 8888
 
 # Add notebooks to image
-ADD sherpa-notebooks/* /data
+ADD sherpa-notebooks/ /data
 
 # Set working dir
 WORKDIR /data
