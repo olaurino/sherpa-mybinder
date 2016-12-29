@@ -15,11 +15,11 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 #****************************************************************************
 
 RUN conda install -n python3 -y -c sherpa \
-  notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl pip && \
+  notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
   rm -rf /opt/conda/pkgs/* && \
-  pip install saba corner
+  pip3 install saba corner
 
 # Expose the notebook port
 EXPOSE 8888
