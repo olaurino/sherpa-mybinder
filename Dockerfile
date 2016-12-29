@@ -14,31 +14,28 @@ MAINTAINER Omar Laurino <olaurino@cfa.harvard.edu>
 # Install required conda libraries
 #****************************************************************************
 
-RUN conda install -n python3 -y -c sherpa \
+RUN source activate python3 && \
+  conda install -y -c sherpa \
   notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
   conda remove -y --force qt pyqt qtconsole && \ 
   conda clean -tipsy && \
   rm -rf /opt/conda/pkgs/* && \
-  pip3 install saba corner
+  pip install saba corner
 
-# Expose the notebook port
-EXPOSE 8888
+RUN source activate root && \
+  conda install -y -c sherpa \
+  notebook=4.2.3 matplotlib astropy=1.3 scipy sherpa=4.8 nomkl && \
+  conda remove -y --force qt pyqt qtconsole && \ 
+  conda clean -tipsy && \
+  rm -rf /opt/conda/pkgs/* && \
+  pip install saba corner
 
 # Add notebooks to image
-ADD sherpa-notebooks/* /data/
-ADD sherpa-notebooks/images/ /data/images/
-
-# Set working dir
-WORKDIR /data
-
-# Mount conda environments folder as volume for persistence
-VOLUME /opt/conda/envs
+RUN mv $HOME/notebooks/sherpa-notebooks/*.ipynb $HOME/notebooks && \
+  mv $HOME/notebooks/sherparc $HOME/notebooks
+  mv $HOME/notebooks/sherpa-notebooks/images $HOME/notebooks && \
+  rm -rf $HOME/notebooks/sherpa-notebooks
 
 # Single CPU Configuration file
-ENV SHERPARC=/data/sherparc
-
-#****************************************************************************
-# Fire it up
-#****************************************************************************
-CMD ipython notebook --no-browser --port 8888 --ip=*
+ENV SHERPARC=$HOME/notebooks/sherparc
 
